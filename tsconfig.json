@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "ES5",
+		"moduleResolution": "classic",
+		"out": "tsc-built.js"
+	},
+	"files": [
+		"typings/tsd.d.ts",
+		"node_modules/@client/main.ts",
+		"node_modules/@server/main.ts"
+	]
+}
