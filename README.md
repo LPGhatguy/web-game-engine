@@ -16,6 +16,5 @@ This is a game engine for browsers.
 ### Client
 - Evergreen Browsers (Chrome, Firefox, Edge)
 	- WebGL
-	- ES6: Promise, Map
 	- WebWorkers
-	- ES5 + strict mode
+	- ES5
