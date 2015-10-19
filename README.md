@@ -1,5 +1,5 @@
-# Meanwhile in Sector 80 (MSE)
-This is a space game.
+# WGE
+This is a game engine for browsers.
 
 ## Requirements
 
@@ -16,5 +16,6 @@ This is a space game.
 ### Client
 - Evergreen Browsers (Chrome, Firefox, Edge)
 	- WebGL
+	- ES6: Promise, Map
 	- WebWorkers
 	- ES5 + strict mode
