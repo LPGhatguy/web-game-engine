@@ -16,5 +16,10 @@ This is a game engine for browsers.
 ### Client
 - Evergreen Browsers (Chrome, Firefox, Edge)
 	- WebGL
+		- WEBGL_draw_buffers
+		- OES_texture_float
 	- WebWorkers
 	- ES5
+
+## Renderer
+The goal is to build a deferred-shading renderer. Forward+ was evaluated, but would require compute shaders.
