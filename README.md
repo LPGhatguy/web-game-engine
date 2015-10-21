@@ -18,6 +18,7 @@ This is a game engine for browsers.
 	- WebGL
 		- WEBGL_draw_buffers
 		- OES_texture_float
+		- OES_vertex_array_object
 	- WebWorkers
 	- ES5
 

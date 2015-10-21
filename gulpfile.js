@@ -144,7 +144,8 @@ gulp.task("build:server", function() {
 
 			let stream = gulp.src([
 					path.join(module.path, transform.source),
-					__dirname + "/typings/tsd.d.ts"
+					__dirname + "/typings/tsd.d.ts",
+					__dirname + "/typings/custom.d.ts"
 				])
 				.pipe(gulpif(config.sourcemaps, plumber(plumberopts)))
 				.pipe(sourcemaps.init())
@@ -188,7 +189,8 @@ gulp.task("build:client", function() {
 			args.noParse = ["jquery"];
 			args.entries = [
 				path.join(module.path, transform.source),
-				__dirname + "/typings/tsd.d.ts"
+				__dirname + "/typings/tsd.d.ts",
+				__dirname + "/typings/custom.d.ts"
 			];
 			args.debug = true;
 
