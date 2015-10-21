@@ -17,6 +17,14 @@ body > canvas {
 	height: 100%;
 }
 
+.debug {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	color: tomato;
+}
+
 body > .instructions {
 	$size: 2rem;
 	$color: rgba(#fff, 0.4);
