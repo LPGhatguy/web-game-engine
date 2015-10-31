@@ -5,7 +5,7 @@ This is a game engine for browsers.
 
 ### Building
 - `node ^4.0`
-- `typescript ^1.6`
+- `typescript ~1.6`
 - Ruby Sass 3.4+ (`gem install sass`)
 - Sass Globbing 1.1+ (`gem install sass-globbing`)
 
@@ -14,13 +14,17 @@ This is a game engine for browsers.
 - MongoDB (future)
 
 ### Client
-- Evergreen Browsers (Chrome, Firefox, Edge)
-	- WebGL
-		- WEBGL_draw_buffers
-		- OES_texture_float
-		- OES_vertex_array_object
-	- WebWorkers
-	- ES5
+Latest version of evergreen browsers (Chrome, Firefox, Edge)
+
+- WebGL (http://webglreport.com/)
+	- WEBGL_draw_buffers
+	- OES_texture_float
+	- OES_vertex_array_object (future)
+- WebWorkers (future)
+- Pointer Lock
+- Full ES5 (including strict mode)
+- ES6:
+	- Promise
 
 ## Renderer
-The goal is to build a deferred-shading renderer. Forward+ was evaluated, but would require compute shaders.
+The goal is to build a tiled deferred-shading renderer.
