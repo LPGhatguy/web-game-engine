@@ -5,20 +5,11 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "node/node.d.ts": {
-      "commit": "bb45306d0fd8ce0852a8d24c023fd787f4151e65"
-    },
-    "mongoose/mongoose.d.ts": {
-      "commit": "bb45306d0fd8ce0852a8d24c023fd787f4151e65"
-    },
     "lodash/lodash.d.ts": {
       "commit": "a461a243e2e09b213bc49d12650f80d81047576d"
     },
     "core-js/core-js.d.ts": {
       "commit": "7a3ca1f0b8a0960af9fc1838f3234cc9d6ce0645"
-    },
-    "websocket/websocket.d.ts": {
-      "commit": "68548c2daab053869f323d475419c693478bbb73"
     }
   }
 }

@@ -16,12 +16,6 @@ var config = {
 
 			},
 			transforms: {
-				server: [
-					{
-						source: "node_modules/@server/**/*",
-						dest: ""
-					}
-				],
 				client: [
 					{
 						source: "node_modules/@client/main.ts",
