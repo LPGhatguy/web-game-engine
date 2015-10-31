@@ -8,7 +8,6 @@
 	"files": [
 		"typings/tsd.d.ts",
 		"typings/custom.d.ts",
-		"node_modules/@client/main.ts",
-		"node_modules/@server/main.ts"
+		"node_modules/@client/main.ts"
 	]
 }
