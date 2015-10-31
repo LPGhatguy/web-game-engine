@@ -35,7 +35,7 @@
     "watchify": "^3.3.1"
   },
   "scripts": {
-    "dev": "start gulp && start cmd && cd debug/static && python2 -m SimpleHTTPServer 8000",
+    "dev": "start gulp && start cmd && cd debug/static && python -m SimpleHTTPServer 8000",
     "start": "cd debug && node main.js"
   },
   "repository": {
