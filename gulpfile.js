@@ -1,5 +1,5 @@
 /*
-This is our Gulpfile.
+This is the Gulpfile.
 
 Current functionality pipelines:
 - TypeScript -> JS (Server)
@@ -19,6 +19,9 @@ let _ = require("lodash");
 let singleBuild = true;
 let userConfig;
 let config;
+
+let useModuleWhitelist = false;
+let whitelist = {};
 
 let plumberopts = {
 	errorHandler: function(err) {
@@ -63,6 +66,41 @@ function ensureModule(module) {
 	module.transforms = module.transforms || {};
 
 	return module;
+}
+
+function processArguments(args) {
+	let mode;
+
+	for (let arg of args) {
+		if (arg.startsWith("--")) {
+			mode = arg.slice(2)
+			continue;
+		}
+
+		switch(mode) {
+			case "modules":
+				useModuleWhitelist = true;
+				whitelist[arg] = true;
+		}
+	}
+}
+
+function getModules() {
+	let modules = [];
+
+	for (let module of config.modules) {
+		let doAdd = !useModuleWhitelist;
+
+		if (useModuleWhitelist) {
+			doAdd = whitelist[module.name];
+		}
+
+		if (doAdd) {
+			modules.push(module);
+		}
+	}
+
+	return modules;
 }
 
 let configPresets = {
@@ -131,7 +169,7 @@ gulp.task("config", function() {
 gulp.task("build:server", function() {
 	let merged = merge();
 
-	config.modules.forEach(function(module) {
+	getModules().forEach(function(module) {
 		if (!module.transforms.server) {
 			return;
 		}
@@ -144,8 +182,7 @@ gulp.task("build:server", function() {
 
 			let stream = gulp.src([
 					path.join(module.path, transform.source),
-					__dirname + "/typings/tsd.d.ts",
-					__dirname + "/typings/custom.d.ts"
+					__dirname + "/typings/tsd.d.ts"
 				])
 				.pipe(gulpif(config.sourcemaps, plumber(plumberopts)))
 				.pipe(sourcemaps.init())
@@ -171,7 +208,7 @@ gulp.task("build:server", function() {
 gulp.task("build:client", function() {
 	let merged = merge();
 
-	config.modules.forEach(function(module) {
+	getModules().forEach(function(module) {
 		if (!module.transforms.client) {
 			return;
 		}
@@ -189,8 +226,7 @@ gulp.task("build:client", function() {
 			args.noParse = ["jquery"];
 			args.entries = [
 				path.join(module.path, transform.source),
-				__dirname + "/typings/tsd.d.ts",
-				__dirname + "/typings/custom.d.ts"
+				__dirname + "/typings/tsd.d.ts"
 			];
 			args.debug = true;
 
@@ -244,7 +280,7 @@ gulp.task("build:client", function() {
 gulp.task("build:styles", function() {
 	let merged = merge();
 
-	config.modules.forEach(function(module) {
+	getModules().forEach(function(module) {
 		if (!module.transforms.styles) {
 			return;
 		}
@@ -282,7 +318,7 @@ gulp.task("build:styles", function() {
 gulp.task("build:static", function() {
 	let merged = merge();
 
-	config.modules.forEach(function(module) {
+	getModules().forEach(function(module) {
 		if (!module.transforms.static) {
 			return;
 		}
@@ -309,6 +345,9 @@ gulp.task("build:static", function() {
 });
 
 gulp.task("build", ["config"], function() {
+	let args = process.argv.slice(3);
+	processArguments(args);
+
 	return gulp.start(["_build"]);
 });
 
@@ -319,7 +358,7 @@ gulp.task("_build", function() {
 gulp.task("watch", function() {
 	livereload.listen();
 
-	config.modules.forEach(function(module) {
+	getModules().forEach(function(module) {
 		if (module.transforms.static) {
 			module.transforms.static.forEach(function(transform) {
 				let ppath = path.parse(transform.source);
@@ -338,12 +377,12 @@ gulp.task("watch", function() {
 			});
 		}
 
-		if (module.transforms.serverScripts) {
-			module.transforms.serverScripts.forEach(function(transform) {
+		if (module.transforms.server) {
+			module.transforms.server.forEach(function(transform) {
 				let ppath = path.parse(transform.source);
 				let wpath = path.join(module.path, ppath.dir, "**/*.ts");
 
-				gulp.watch(wpath, ["build:serverScripts"]);
+				gulp.watch(wpath, ["build:server"]);
 			});
 		}
 	});
@@ -352,11 +391,17 @@ gulp.task("watch", function() {
 gulp.task("production", ["config"], function() {
 	_.assign(config, configPresets.production);
 
+	let args = process.argv.slice(3);
+	processArguments(args);
+
 	return gulp.start(["_build"]);
 });
 
 gulp.task("default", ["config"], function() {
 	singleBuild = false;
+
+	let args = process.argv.slice(2);
+	processArguments(args);
 
 	return gulp.start(["_build", "watch"]);
 });

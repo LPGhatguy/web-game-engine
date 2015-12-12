@@ -7,12 +7,12 @@
     "websocket": "^1.0.22"
   },
   "devDependencies": {
-    "browserify": "^11.0.1",
+    "browserify": "^12.0.1",
     "core-js": "^1.1.4",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.1",
     "gulp-concat": "^2.6.0",
-    "gulp-if": "^1.2.5",
+    "gulp-if": "^2.0.0",
     "gulp-insert": "^0.5.0",
     "gulp-livereload": "^3.8.0",
     "gulp-minify-css": "^1.2.0",
@@ -27,8 +27,8 @@
     "gulp-watch": "^4.3.4",
     "lodash": "^3.10.1",
     "merge-stream": "^1.0.0",
-    "tsify": "^0.11.9",
-    "typescript": "^1.6.2",
+    "tsify": "^0.13.1",
+    "typescript": "~1.7.3",
     "uglify": "^0.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
@@ -43,8 +43,7 @@
     "url": "git+https://github.com/LPGhatguy/web-game-engine.git"
   },
   "author": "Lucien Greathouse <me@lpghatguy.com>",
-  "license": "ARR",
-  "private": true,
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/LPGhatguy/web-game-engine/issues"
   },
